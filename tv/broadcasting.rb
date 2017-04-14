@@ -1,9 +1,9 @@
 class Broadcasting
   def initialize(station, started_at, name, url, progress, stars)
-    @station = station.strip
-    @started_at = started_at.strip
-    @name = name.strip
-    @url = url.strip
+    @station = station.to_s.strip
+    @started_at = started_at.to_s.strip
+    @name = name.to_s.strip
+    @url = url.to_s. strip
     @progress = progress.to_f
     @stars = stars.to_i
   end
@@ -12,9 +12,18 @@ class Broadcasting
     { subtitle: subtitle, title: title, quicklookurl: quicklookurl }
   end
 
+  def self.filter(items, query)
+    return items unless query
+    items.keep_if { |broadcast|
+      broadcast.inspect.downcase.include?(query.downcase)
+    }
+  end
+
   private
 
   def progress_bar
+    return if @progress <= 0.0
+
     total = 10
     processed = @progress.ceil / 10
 
