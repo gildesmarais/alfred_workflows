@@ -7,14 +7,14 @@ provide no “ready to install” workflows.
 
 Shows [ARD Text](http://www.ard-text.de/mobil/100).  
 Shortcut: `tt`  
-Press <kbd>⇧ shift</kbd> to read the actual article.
+Press <kbd>Shift</kbd> to read the actual article.
 
 Takes a second parameter to request a specific page.
 
 ## tv
 
-Grabs current broadcastings from Klack.  
-Shortcut: `tv`  
-Press <kbd>⇧ shift</kbd> to read the broadcasting's description.
+Grabs broadcastings from Klack.  
+Shortcut: `tv` for current, `tvn` for up next  
+Press <kbd>Shift</kbd> to read the broadcasting's description.
 
 Takes a search parameter.

@@ -27,11 +27,4 @@ current_broadcastings = current_broadcast.css('tr').map do |broadcasting|
   Broadcasting.new(station, started_at, name, url, progress, stars)
 end
 
-def filter_items(items, query)
-  return items unless query
-  items.keep_if { |broadcast|
-    broadcast.inspect.downcase.include?(query.downcase)
-  }
-end
-
-puts({ items: filter_items(current_broadcastings.map(&:to_alfred), ARGV[0]) }.to_json)
+puts({ items: Broadcasting.filter(current_broadcastings.map(&:to_alfred), ARGV[0]) }.to_json)
