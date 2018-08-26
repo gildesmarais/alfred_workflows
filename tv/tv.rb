@@ -5,7 +5,7 @@ require 'json'
 
 require_relative 'broadcasting'
 
-page_source = open('http://www.klack.de/?typeID=-1&typeName=free')
+page_source = open('https://www.klack.de/?typeID=-1&typeName=free')
 doc = Nokogiri::HTML(page_source)
 
 broadcasts = doc.css('table.broadcasts')
@@ -16,8 +16,8 @@ current_broadcastings = current_broadcast.css('tr').map do |broadcasting|
   started_at = broadcasting.css('.smallTime').text
   name = broadcasting.css('.smallTitle').text
   url_path = broadcasting.css('.smallTitle > a').attr('href').value
-  url = "http://klack.de/#{url_path}?popup=details"
-  progress = broadcasting.css('.progressBar > div').attr('style').value.delete('width: ').delete('%')
+  url = "https://klack.de/#{url_path}?popup=details"
+  progress = broadcasting.css('.progressBar > div')&.attr('style')&.value&.delete('width: ')&.delete('%')
 
   stars = 0
   if star_image = broadcasting.css('.smallTitle a > img')[0]

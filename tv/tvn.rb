@@ -5,7 +5,7 @@ require 'json'
 
 require_relative 'broadcasting'
 
-page_source = open('http://www.klack.de/fernsehprogramm/was-laeuft-gerade/0/-1/free.html')
+page_source = open('https://www.klack.de/fernsehprogramm/was-laeuft-gerade/0/-1/free.html')
 doc = Nokogiri::HTML(page_source)
 
 broadcasts = doc.css('table.broadcasts')
@@ -17,7 +17,7 @@ current_broadcastings = current_broadcast.css('tr')[1..-1].map do |broadcasting|
   name = broadcasting.css('.content > a').last.text
 
   url_path = broadcasting.css('.details .content > a').last.attr('href')
-  url = "http://klack.de#{url_path}?popup=details"
+  url = "https://klack.de#{url_path}?popup=details"
 
   Broadcasting.new(station, nil, "#{name} [#{starts_at}]", url, nil, nil)
 end
